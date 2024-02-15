@@ -2,7 +2,7 @@
 % Please edit documentation in R/functions.R
 \name{compile.h}
 \alias{compile.h}
-\title{Generate function for hazard}
+\title{Generate hazard function}
 \usage{
 compile.h(rct.lst, envir)
 }

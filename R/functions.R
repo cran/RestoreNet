@@ -451,7 +451,6 @@ get.sim.tl <- function(Yt, theta, S, s2 = 0, tau = 1, rct.lst, verbose = TRUE){
 #' Net-effect matrix
 #'
 #' This function builds the net-effect matrix V.
-#' @param ct.lst list of cell types
 #' @param rct.lst list of biochemical reactions.
 #' A differentiation move from cell type "A" to cell type "B" must be coded as "A->B"
 #' Duplication of cell "A" must be coded as "A->1"
@@ -481,7 +480,7 @@ get.V <- function(rct.lst){
   return(V)
 }
 
-#' Generate function for hazard
+#' Generate hazard function 
 #'
 #' This function dynamically builds the function get.h() that will be used to get the hazard vector.
 #' @param rct.lst list of biochemical reactions.
@@ -706,22 +705,28 @@ get.gnl <- function(theta, M, y, V, VCNs, nObs, dW){
 #' This parameter is also passed to the optim() function.
 #' Higher values may produce more tracing information: for method "L-BFGS-B" there are six levels of tracing.
 #' (To understand exactly what these do see the source code: higher levels give more detail.)
-#' @return A 3-length list. First element is the output returned by "optim()" function (see "optim()" documentation for details).
+#' @return A 3-length list. First element is the output returned by optim() function (see optim() documentation for details).
 #' Second element is a vector of statistics associated to the fitted null model:
-#' \itemize{
-#'  \item{"nPar"}{number of parameters of the base(null) model}
-#'  \item{"cll"}{value of the conditional log-likelihood, in this case just the log-likelihood}
-#'  \item{"mll"}{value of the marginal log-likelihood, in this case just the log-likelihood}
-#'  \item{"cAIC"}{conditional Akaike Information Criterion (cAIC), in this case simply the AIC.}
-#'  \item{"mAIC"}{marginal Akaike Information Criterion (mAIC), in this case simply the AIC.}
-#'  \item{"Chi2"}{value of the \eqn{\chi^2}{Chi-squared} statistic \eqn{(y - M\theta)'S^{-1}(y - M\theta)}{(y - Mθ)'S^-1(y - Mθ)}.}
-#'  \item{"p-value"}{p-value of the \eqn{\chi^2}{Chi-squared} test for the null hypothesis that Chi2
-#'  follows a \eqn{\chi^2}{Chi-squared} distribution with n - nPar degrees of freedom.}
+#' \tabular{ll}{
+#'  \code{nPar} \tab number of parameters of the base(null) model \cr
+#'    \tab \cr
+#'  \code{cll} \tab value of the conditional log-likelihood, in this case just the log-likelihood \cr
+#'    \tab \cr
+#'  \code{mll} \tab value of the marginal log-likelihood, in this case just the log-likelihood \cr
+#'    \tab \cr
+#'  \code{cAIC} \tab conditional Akaike Information Criterion (cAIC), in this case simply the AIC. \cr
+#'    \tab \cr
+#'  \code{mAIC} \tab marginal Akaike Information Criterion (mAIC), in this case simply the AIC. \cr
+#'    \tab \cr
+#'  \code{Chi2} \tab value of the \eqn{\chi^2}{Chi-squared} statistic \eqn{(y - M\theta)'S^{-1}(y - M\theta)}{(y - Mθ)'S^-1(y - Mθ)}. \cr
+#'    \tab \cr
+#'  \code{p-value} \tab p-value of the \eqn{\chi^2}{Chi-squared} test for the null hypothesis that Chi2 follows a \eqn{\chi^2}{Chi-squared} distribution with n - nPar degrees of freedom. \cr
 #' }
-#' The third element, called "design", is a list including:
-#' \itemize{
-#'  \item{"M"}{A \eqn{n \times K}{n by K} dimensional (design) matrix.}
-#'  \item{"V"}{A \eqn{p \times K}{p by K} dimensional net-effect matrix.}
+#' The third element, called design, is a list including:
+#' \tabular{ll}{
+#'  \code{M} \tab A \eqn{n \times K}{n by K} dimensional (design) matrix. \cr
+#'    \tab \cr
+#'  \code{V} \tab A \eqn{p \times K}{p by K} dimensional net-effect matrix. \cr
 #' }
 #' @keywords internal
 nullModelFitting <- function(theta_start,
@@ -1090,7 +1095,7 @@ VEuy <- function(theta_curr, M, M_bdiag, y, V, VCNs, nObs){
   return(veuy)
 }
 
-#' Multivariate normal density function
+#' Multivariate Normal density function
 #'
 #' Proability density function of a n-variate normal distribution
 #' @param x n-dimensional vector.
@@ -1166,19 +1171,28 @@ ldet <- function(A, logarithm = TRUE){
 #' @param verbose (defaults to TRUE) Logical value. If TRUE, then information messages on the progress of the
 #' algorithm are printed to the console.
 #' @return A vector of statistics associated to the fitted base and random-effects models:
-#' \itemize{
-#'  \item{"nPar"}{number of parameters of the base(null) model}
-#'  \item{"cll"}{value of the conditional log-likelihood, in this case just the log-likelihood}
-#'  \item{"mll"}{value of the marginal log-likelihood, in this case just the log-likelihood}
-#'  \item{"cAIC"}{conditional Akaike Information Criterion (cAIC), in this case simply the AIC.}
-#'  \item{"mAIC"}{marginal Akaike Information Criterion (mAIC), in this case simply the AIC.}
-#'  \item{"Chi2"}{value of the \eqn{\chi^2}{Chi-squared} statistic \eqn{(y - M\theta)'S^{-1}(y - M\theta)}{(y - Mθ)'S^-1(y - Mθ)}.}
-#'  \item{"p-value"}{p-value of the \eqn{\chi^2}{Chi-squared} test for the null hypothesis that Chi2
-#'  follows a \eqn{\chi^2}{Chi-squared} distribution with n - nPar degrees of freedom.}
-#'  \item{"KLdiv"}{Kullback-Leibler divergence of the random-effects model from the null model.}
-#'  \item{"KLdiv/N"}{Rescaled Kullback-Leibler divergence of the random-effects model from the null model.}
-#'  \item{"BhattDist_nullCond"}{Bhattacharyya distance between the random-effects model and the null model.}
-#'  \item{"BhattDist_nullCond/N"}{Rescaled Bhattacharyya distance between the random-effects model and the null model.}
+#' \tabular{ll}{
+#'  \code{nPar} \tab number of parameters of the base(null) model \cr
+#'    \tab \cr
+#'  \code{cll} \tab value of the conditional log-likelihood, in this case just the log-likelihood \cr
+#'    \tab \cr
+#'  \code{mll} \tab value of the marginal log-likelihood, in this case just the log-likelihood \cr
+#'    \tab \cr
+#'  \code{cAIC} \tab conditional Akaike Information Criterion (cAIC), in this case simply the AIC. \cr
+#'    \tab \cr
+#'  \code{mAIC} \tab marginal Akaike Information Criterion (mAIC), in this case simply the AIC. \cr
+#'    \tab \cr
+#'  \code{Chi2} \tab value of the \eqn{\chi^2}{Chi-squared} statistic \eqn{(y - M\theta)'S^{-1}(y - M\theta)}{(y - Mθ)'S^-1(y - Mθ)}. \cr
+#'    \tab \cr
+#'  \code{p-value} \tab p-value of the \eqn{\chi^2}{Chi-squared} test for the null hypothesis that Chi2 follows a \eqn{\chi^2}{Chi-squared} distribution with n - nPar degrees of freedom. \cr
+#'    \tab \cr
+#'  \code{KLdiv} \tab Kullback-Leibler divergence of the random-effects model from the null model. \cr
+#'    \tab \cr
+#'  \code{KLdiv/N} \tab Rescaled Kullback-Leibler divergence of the random-effects model from the null model. \cr
+#'    \tab \cr
+#'  \code{BhattDist_nullCond} \tab Bhattacharyya distance between the random-effects model and the null model. \cr
+#'    \tab \cr
+#'  \code{BhattDist_nullCond/N} \tab Rescaled Bhattacharyya distance between the random-effects model and the null model. \cr
 #' }
 #' @keywords internal
 rndEffModelStats <- function(theta_null,
@@ -1373,7 +1387,7 @@ BhattDist <- function(mu1, S1, mu2, S2){
   return(res)
 }
 
-#' Fit the base (null) model and get the results
+#' Fit the base (null) model
 #'
 #' This function builds the design matrix of the null model and returns the fitted values and the corresponding statistics.
 #' @param Y A 3-dimensional array whose dimensions are the time, the cell type and the clone respectively.
@@ -1401,20 +1415,26 @@ BhattDist <- function(mu1, S1, mu2, S2){
 #' the algorithm are printed to the console.
 #' @return A 3-length list. First element is the output returned by "optim()" function (see "optim()" documentation for details).
 #' Second element is a vector of statistics associated to the fitted null model:
-#' \itemize{
-#'  \item{"nPar"}{number of parameters of the base(null) model}
-#'  \item{"cll"}{value of the conditional log-likelihood, in this case just the log-likelihood}
-#'  \item{"mll"}{value of the marginal log-likelihood, in this case just the log-likelihood}
-#'  \item{"cAIC"}{conditional Akaike Information Criterion (cAIC), in this case simply the AIC.}
-#'  \item{"mAIC"}{marginal Akaike Information Criterion (mAIC), in this case simply the AIC.}
-#'  \item{"Chi2"}{value of the \eqn{\chi^2}{Chi-squared} statistic \eqn{(y - M\theta)'S^{-1}(y - M\theta)}{(y - Mθ)'S^-1(y - Mθ)}.}
-#'  \item{"p-value"}{p-value of the \eqn{\chi^2}{Chi-squared} test for the null hypothesis that Chi2
-#'  follows a \eqn{\chi^2}{Chi-squared} distribution with n - nPar degrees of freedom.}
+#' \tabular{ll}{
+#'  \code{nPar} \tab number of parameters of the base(null) model \cr
+#'    \tab \cr
+#'  \code{cll} \tab value of the conditional log-likelihood, in this case just the log-likelihood \cr
+#'    \tab \cr
+#'  \code{mll} \tab value of the marginal log-likelihood, in this case just the log-likelihood \cr
+#'    \tab \cr
+#'  \code{cAIC} \tab conditional Akaike Information Criterion (cAIC), in this case simply the AIC. \cr
+#'    \tab \cr
+#'  \code{mAIC} \tab marginal Akaike Information Criterion (mAIC), in this case simply the AIC. \cr
+#'    \tab \cr
+#'  \code{Chi2} \tab value of the \eqn{\chi^2}{Chi-squared} statistic \eqn{(y - M\theta)'S^{-1}(y - M\theta)}{(y - Mθ)'S^-1(y - Mθ)}. \cr
+#'    \tab \cr
+#'  \code{p-value} \tab p-value of the \eqn{\chi^2}{Chi-squared} test for the null hypothesis that Chi2 follows a \eqn{\chi^2}{Chi-squared} distribution with n - nPar degrees of freedom. \cr
 #' }
 #' The third element, called "design", is a list including:
-#' \itemize{
-#'  \item{"M"}{A \eqn{n \times K}{n by K} dimensional (design) matrix.}
-#'  \item{"V"}{A \eqn{p \times K}{p by K} dimensional net-effect matrix.}
+#' \tabular{ll}{
+#'  \code{M} \tab A \eqn{n \times K}{n by K} dimensional (design) matrix.\cr
+#'    \tab \cr
+#'  \code{V} \tab A \eqn{p \times K}{p by K} dimensional net-effect matrix.\cr
 #' }
 #' @examples
 #' rcts <- c("A->1", "B->1", "C->1", "D->1",
@@ -1527,7 +1547,7 @@ fit.null <- function(Y,
   return(resNullFullV)
 }
 
-#' Fit the random-effects model and get the results
+#' Fit the random-effects model
 #'
 #' This function builds the design matrix of the random-effects model and returns the fitted values and the corresponding statistics.
 #' @param theta_0 A p-dimensional vector parameter as the initial guess for the inference.
@@ -1561,25 +1581,36 @@ fit.null <- function(Y,
 #' along with the conditional expectation \eqn{E[u \vert y]}{E[u|y]} and variance \eqn{V[u \vert y]}{V[u|y]}
 #' of the latent states u given the observed states y from the last step of the expectation-maximization algorithm.
 #' Second element is a vector of statistics associated to the fitted random-effects model:
-#' \itemize{
-#'  \item{"nPar"}{number of parameters of the base(null) model}
-#'  \item{"cll"}{value of the conditional log-likelihood, in this case just the log-likelihood}
-#'  \item{"mll"}{value of the marginal log-likelihood, in this case just the log-likelihood}
-#'  \item{"cAIC"}{conditional Akaike Information Criterion (cAIC), in this case simply the AIC.}
-#'  \item{"mAIC"}{marginal Akaike Information Criterion (mAIC), in this case simply the AIC.}
-#'  \item{"Chi2"}{value of the \eqn{\chi^2}{Chi-squared} statistic \eqn{(y - M\theta)'S^{-1}(y - M\theta)}{(y - Mθ)'S^-1(y - Mθ)}.}
-#'  \item{"p-value"}{p-value of the \eqn{\chi^2}{Chi-squared} test for the null hypothesis that Chi2
-#'  follows a \eqn{\chi^2}{Chi-squared} distribution with n - nPar degrees of freedom.}
-#' \item{"KLdiv"}{Kullback-Leibler divergence of the random-effects model from the null model.}
-#' \item{"KLdiv/N"}{Rescaled Kullback-Leibler divergence of the random-effects model from the null model.}
-#' \item{"BhattDist_nullCond"}{Bhattacharyya distance between the random-effects model and the null model.}
-#' \item{"BhattDist_nullCond/N"}{Rescaled Bhattacharyya distance between the random-effects model and the null model.}
+#' \tabular{ll}{
+#'  \code{nPar} \tab number of parameters of the base(null) model \cr
+#'    \tab \cr
+#'  \code{cll} \tab value of the conditional log-likelihood, in this case just the log-likelihood \cr
+#'    \tab \cr
+#'  \code{mll} \tab value of the marginal log-likelihood, in this case just the log-likelihood \cr
+#'    \tab \cr
+#'  \code{cAIC} \tab conditional Akaike Information Criterion (cAIC), in this case simply the AIC. \cr
+#'    \tab \cr
+#'  \code{mAIC} \tab marginal Akaike Information Criterion (mAIC), in this case simply the AIC. \cr
+#'    \tab \cr
+#'  \code{Chi2} \tab value of the \eqn{\chi^2}{Chi-squared} statistic \eqn{(y - M\theta)'S^{-1}(y - M\theta)}{(y - Mθ)'S^-1(y - Mθ)}. \cr
+#'    \tab \cr
+#'  \code{p-value} \tab p-value of the \eqn{\chi^2}{Chi-squared} test for the null hypothesis that Chi2 follows a \eqn{\chi^2}{Chi-squared} distribution with n - nPar degrees of freedom. \cr
+#'    \tab \cr
+#' \code{KLdiv} \tab Kullback-Leibler divergence of the random-effects model from the null model. \cr
+#'   \tab \cr
+#' \code{KLdiv/N} \tab Rescaled Kullback-Leibler divergence of the random-effects model from the null model. \cr
+#'   \tab \cr
+#' \code{BhattDist_nullCond} \tab Bhattacharyya distance between the random-effects model and the null model. \cr
+#'   \tab \cr
+#' \code{BhattDist_nullCond/N} \tab Rescaled Bhattacharyya distance between the random-effects model and the null model. \cr
 #' }
 #' The third element, called "design", is a list including:
-#' \itemize{
-#'  \item{"M"}{A \eqn{n \times K}{n by K} dimensional (design) matrix.}
-#'  \item{"M_bdiag"}{ A\eqn{n \times Jp}{n by J*p} dimensional block-diagonal design matrix.}
-#'  \item{"V"}{A \eqn{p \times K}{p by K} dimensional net-effect matrix.}
+#' \tabular{ll}{
+#'  \code{M} \tab A \eqn{n \times K}{n by K} dimensional (design) matrix. \cr
+#'    \tab \cr
+#'  \code{M_bdiag} \tab  A\eqn{n \times Jp}{n by J*p} dimensional block-diagonal design matrix. \cr
+#'    \tab \cr
+#'  \code{V} \tab A \eqn{p \times K}{p by K} dimensional net-effect matrix. \cr
 #' }
 #' @examples
 #' rcts <- c("A->1", "B->1", "C->1", "D->1",

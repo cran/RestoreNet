@@ -37,19 +37,28 @@ algorithm are printed to the console.}
 }
 \value{
 A vector of statistics associated to the fitted base and random-effects models:
-\itemize{
-\item{"nPar"}{number of parameters of the base(null) model}
-\item{"cll"}{value of the conditional log-likelihood, in this case just the log-likelihood}
-\item{"mll"}{value of the marginal log-likelihood, in this case just the log-likelihood}
-\item{"cAIC"}{conditional Akaike Information Criterion (cAIC), in this case simply the AIC.}
-\item{"mAIC"}{marginal Akaike Information Criterion (mAIC), in this case simply the AIC.}
-\item{"Chi2"}{value of the \eqn{\chi^2}{Chi-squared} statistic \eqn{(y - M\theta)'S^{-1}(y - M\theta)}{(y - Mθ)'S^-1(y - Mθ)}.}
-\item{"p-value"}{p-value of the \eqn{\chi^2}{Chi-squared} test for the null hypothesis that Chi2
-follows a \eqn{\chi^2}{Chi-squared} distribution with n - nPar degrees of freedom.}
-\item{"KLdiv"}{Kullback-Leibler divergence of the random-effects model from the null model.}
-\item{"KLdiv/N"}{Rescaled Kullback-Leibler divergence of the random-effects model from the null model.}
-\item{"BhattDist_nullCond"}{Bhattacharyya distance between the random-effects model and the null model.}
-\item{"BhattDist_nullCond/N"}{Rescaled Bhattacharyya distance between the random-effects model and the null model.}
+\tabular{ll}{
+\code{nPar} \tab number of parameters of the base(null) model \cr
+\tab \cr
+\code{cll} \tab value of the conditional log-likelihood, in this case just the log-likelihood \cr
+\tab \cr
+\code{mll} \tab value of the marginal log-likelihood, in this case just the log-likelihood \cr
+\tab \cr
+\code{cAIC} \tab conditional Akaike Information Criterion (cAIC), in this case simply the AIC. \cr
+\tab \cr
+\code{mAIC} \tab marginal Akaike Information Criterion (mAIC), in this case simply the AIC. \cr
+\tab \cr
+\code{Chi2} \tab value of the \eqn{\chi^2}{Chi-squared} statistic \eqn{(y - M\theta)'S^{-1}(y - M\theta)}{(y - Mθ)'S^-1(y - Mθ)}. \cr
+\tab \cr
+\code{p-value} \tab p-value of the \eqn{\chi^2}{Chi-squared} test for the null hypothesis that Chi2 follows a \eqn{\chi^2}{Chi-squared} distribution with n - nPar degrees of freedom. \cr
+\tab \cr
+\code{KLdiv} \tab Kullback-Leibler divergence of the random-effects model from the null model. \cr
+\tab \cr
+\code{KLdiv/N} \tab Rescaled Kullback-Leibler divergence of the random-effects model from the null model. \cr
+\tab \cr
+\code{BhattDist_nullCond} \tab Bhattacharyya distance between the random-effects model and the null model. \cr
+\tab \cr
+\code{BhattDist_nullCond/N} \tab Rescaled Bhattacharyya distance between the random-effects model and the null model. \cr
 }
 }
 \description{

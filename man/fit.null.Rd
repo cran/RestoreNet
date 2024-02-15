@@ -2,7 +2,7 @@
 % Please edit documentation in R/functions.R
 \name{fit.null}
 \alias{fit.null}
-\title{Fit the base (null) model and get the results}
+\title{Fit the base (null) model}
 \usage{
 fit.null(
   Y,
@@ -50,20 +50,26 @@ the algorithm are printed to the console.}
 \value{
 A 3-length list. First element is the output returned by "optim()" function (see "optim()" documentation for details).
 Second element is a vector of statistics associated to the fitted null model:
-\itemize{
-\item{"nPar"}{number of parameters of the base(null) model}
-\item{"cll"}{value of the conditional log-likelihood, in this case just the log-likelihood}
-\item{"mll"}{value of the marginal log-likelihood, in this case just the log-likelihood}
-\item{"cAIC"}{conditional Akaike Information Criterion (cAIC), in this case simply the AIC.}
-\item{"mAIC"}{marginal Akaike Information Criterion (mAIC), in this case simply the AIC.}
-\item{"Chi2"}{value of the \eqn{\chi^2}{Chi-squared} statistic \eqn{(y - M\theta)'S^{-1}(y - M\theta)}{(y - Mθ)'S^-1(y - Mθ)}.}
-\item{"p-value"}{p-value of the \eqn{\chi^2}{Chi-squared} test for the null hypothesis that Chi2
-follows a \eqn{\chi^2}{Chi-squared} distribution with n - nPar degrees of freedom.}
+\tabular{ll}{
+\code{nPar} \tab number of parameters of the base(null) model \cr
+\tab \cr
+\code{cll} \tab value of the conditional log-likelihood, in this case just the log-likelihood \cr
+\tab \cr
+\code{mll} \tab value of the marginal log-likelihood, in this case just the log-likelihood \cr
+\tab \cr
+\code{cAIC} \tab conditional Akaike Information Criterion (cAIC), in this case simply the AIC. \cr
+\tab \cr
+\code{mAIC} \tab marginal Akaike Information Criterion (mAIC), in this case simply the AIC. \cr
+\tab \cr
+\code{Chi2} \tab value of the \eqn{\chi^2}{Chi-squared} statistic \eqn{(y - M\theta)'S^{-1}(y - M\theta)}{(y - Mθ)'S^-1(y - Mθ)}. \cr
+\tab \cr
+\code{p-value} \tab p-value of the \eqn{\chi^2}{Chi-squared} test for the null hypothesis that Chi2 follows a \eqn{\chi^2}{Chi-squared} distribution with n - nPar degrees of freedom. \cr
 }
 The third element, called "design", is a list including:
-\itemize{
-\item{"M"}{A \eqn{n \times K}{n by K} dimensional (design) matrix.}
-\item{"V"}{A \eqn{p \times K}{p by K} dimensional net-effect matrix.}
+\tabular{ll}{
+\code{M} \tab A \eqn{n \times K}{n by K} dimensional (design) matrix.\cr
+\tab \cr
+\code{V} \tab A \eqn{p \times K}{p by K} dimensional net-effect matrix.\cr
 }
 }
 \description{

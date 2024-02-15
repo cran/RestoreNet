@@ -2,7 +2,7 @@
 % Please edit documentation in R/functions.R
 \name{dmvNorm}
 \alias{dmvNorm}
-\title{Multivariate normal density function}
+\title{Multivariate Normal density function}
 \usage{
 dmvNorm(x, Mu, Sigma, SigmaInv)
 }

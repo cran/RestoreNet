@@ -1,6 +1,6 @@
 Package: RestoreNet
 Title: Random-Effects Stochastic Reaction Networks
-Version: 1.0
+Version: 1.0.1
 Authors@R: 
     c(person(given = "Luca", 
             family = "Del Core", 
@@ -27,7 +27,7 @@ Description: A random-effects stochastic model that allows quick detection of
   expectation maximization algorithm. Further details on the methods can be found in L. Del Core et al., (2022) <doi:10.1101/2022.05.31.494100>.
 License: GPL-3
 Encoding: UTF-8
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.3.9000
 Imports: Matrix, xtable, scales, stringr, ggplot2, scatterpie,
         RColorBrewer
 Depends: R (>= 2.10)
@@ -35,10 +35,10 @@ LazyData: true
 Suggests: R.rsp
 VignetteBuilder: R.rsp
 NeedsCompilation: no
-Packaged: 2022-09-20 08:13:12 UTC; delcore.luca
+Packaged: 2024-02-15 10:41:07 UTC; pmzld
 Author: Luca Del Core [aut, cre, cph] (<https://orcid.org/0000-0002-1672-6995>),
   Marco Grzegorczyk [aut, ths] (<https://orcid.org/0000-0002-2604-9270>),
   Ernst Wit [aut, ths] (<https://orcid.org/0000-0002-3671-9610>)
 Maintainer: Luca Del Core <l.del.core@rug.nl>
 Repository: CRAN
-Date/Publication: 2022-09-20 10:46:14 UTC
+Date/Publication: 2024-02-15 11:00:02 UTC

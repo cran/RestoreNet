@@ -11,8 +11,6 @@ get.V(rct.lst)
 A differentiation move from cell type "A" to cell type "B" must be coded as "A->B"
 Duplication of cell "A" must be coded as "A->1"
 Death of cell "A" must be coded as "A->0"}
-
-\item{ct.lst}{list of cell types}
 }
 \value{
 The net-effect matrix V
